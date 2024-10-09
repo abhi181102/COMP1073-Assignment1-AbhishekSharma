@@ -56,3 +56,52 @@ function updateWord(btnNumber) {
       break;
   }
 }
+
+// Add event listeners to action buttons
+document.getElementById("generateBtn").addEventListener("click", buildSentence);
+document.getElementById("resetBtn").addEventListener("click", resetAll);
+document.getElementById("randomBtn").addEventListener("click", randomSentence);
+
+// Function to build a sentence from selected words
+function buildSentence() {
+  if (!btnWord1Pressed || !btnWord2Pressed || !btnWord3Pressed || !btnWord4Pressed || !btnWord5Pressed) {
+    alert("Please select all words.");
+    return;
+  }
+
+  const sentence = [
+    document.getElementById("btnWord1").textContent,
+    document.getElementById("btnWord2").textContent,
+    document.getElementById("btnWord3").textContent,
+    document.getElementById("btnWord4").textContent,
+    document.getElementById("btnWord5").textContent,
+  ].join(" ") + ".";
+
+  document.getElementById("storyBox").textContent = sentence;
+}
+
+// Function to reset all buttons and clear the sentence
+function resetAll() {
+  document.getElementById("btnWord1").textContent = "Word 1";
+  document.getElementById("btnWord2").textContent = "Word 2";
+  document.getElementById("btnWord3").textContent = "Word 3";
+  document.getElementById("btnWord4").textContent = "Word 4";
+  document.getElementById("btnWord5").textContent = "Word 5";
+  document.getElementById("storyBox").textContent = "";
+  word1Index = word2Index = word3Index = word4Index = word5Index = 0;
+  btnWord1Pressed = btnWord2Pressed = btnWord3Pressed = btnWord4Pressed = btnWord5Pressed = false;
+}
+
+// Function to generate a random sentence
+function randomSentence() {
+  const randomSentence = [
+    wordList1[Math.floor(Math.random() * wordList1.length)],
+    wordList2[Math.floor(Math.random() * wordList2.length)],
+    wordList3[Math.floor(Math.random() * wordList3.length)],
+    wordList4[Math.floor(Math.random() * wordList4.length)],
+    wordList5[Math.floor(Math.random() * wordList5.length)],
+  ].join(" ") + ".";
+
+  document.getElementById("storyBox").textContent = randomSentence;
+}
+
